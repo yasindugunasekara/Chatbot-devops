@@ -135,6 +135,4 @@ Once your EKS cluster is up and your Docker image is pushed to the ECR repositor
 
 ---
 
-## 📄 License
 
-This project is open-source and available under the MIT License.
