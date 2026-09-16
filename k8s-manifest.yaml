@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chat-app-deployment
+spec:
+  replicas: 2 
+  selector:
+    matchLabels:
+      app: chat-app
+  template:
+    metadata:
+      labels:
+        app: chat-app
+    spec:
+      containers:
+      - name: chat-app-container
+        image: 077463315189.dkr.ecr.us-east-1.amazonaws.com/my-chat-app-repo:latest
+        ports:
+        - containerPort: 3000 
+        
+        env:
+        - name: DEEPSEEK_API_KEY
+          valueFrom:
+            secretKeyRef:
+              name: deepseek-secret
+              key: DEEPSEEK_API_KEY
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chat-app-service
+spec:
+  type: LoadBalancer 
+  selector:
+    app: chat-app
+  ports:
+    - protocol: TCP
+      port: 80         
+      targetPort: 3000
