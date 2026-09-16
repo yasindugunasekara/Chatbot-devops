@@ -1,26 +1,61 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-chat-bg: var(--chat-bg);
+  --color-msg-user: var(--msg-user);
+  --color-msg-bot: var(--msg-bot);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #fcfcfc;
+  --foreground: #111111;
+  --accent: #f0f0f0;
+  --accent-hover: #e5e5e5;
+  --border: #e0e0e0;
+  --input: #ffffff;
+  --chat-bg: #f8f8f8;
+  --msg-user: #e0e0e0;
+  --msg-bot: #fdfdfd;
+}
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ececec;
+  --accent: #1a1a1a;
+  --accent-hover: #2a2a2a;
+  --border: #333333;
+  --input: #050505;
+  --chat-bg: #121212;
+  --msg-user: #1e1e1e;
+  --msg-bot: #0a0a0a;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-mono), monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::placeholder {
+  color: #71717a;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
