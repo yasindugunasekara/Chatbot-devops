@@ -1,14 +1,18 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
-// Initialize the OpenAI client with Deepseek configuration
-const openai = new OpenAI({
-  baseURL: "https://api.deepseek.com",
-  apiKey: process.env.DEEPSEEK_API_KEY,
-});
-
 export async function POST(req: Request) {
   try {
+    const apiKey = process.env.DEEPSEEK_API_KEY;
+    if (!apiKey) {
+      throw new Error("DEEPSEEK_API_KEY is not configured");
+    }
+
+    const openai = new OpenAI({
+      baseURL: "https://api.deepseek.com",
+      apiKey,
+    });
+
     const body = await req.json();
     const { messages } = body;
 
